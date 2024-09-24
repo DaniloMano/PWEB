@@ -1,17 +1,123 @@
 <!DOCTYPE html>
 
 <html>
+    <title>
+        Page Title
+    </title>
+    <head>
+      <style>
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+          }
+      
+          th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+          }
+      
+          th {
+            background-color: #333;
+            color: white;
+            position: sticky;
+            top: 0;
+          }
+      
+          tr {
+            background-color: #f1f1f1;
+          }
 
+          .flex-container {
+            display: flex;
+            background-color: DodgerBlue;
+          }
+
+          .flex-container > div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+          }
+      </style>
+    </head>
+    
    <body>
+
+      <img src="https://akamai.sscdn.co/uploadfile/letras/playlists/3/a/b/9/3ab92363f7974d679f4194de9f389b5b.jpg"
+      width="200"/>
 
       <h1>Uma trova...</h1>
 
       <p>
 
-         Eu só preciso de hoje
+         Eu só preciso de hoje<br/>      
+
+         Pra viver e ser feliz<br/>
+
+         O passado já me foge<br/>
+
+         E o futuro nada diz!<br/>
 
       </p>
 
-   </body>
+      <br/>
+
+      <p>
+
+         Autor: Francisco Borges
+
+      </p>
+
+      <div class="flex-container">
+        <div>
+          <table>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Preço
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Água <br>
+                    <a href="https://pt.wikipedia.org/wiki/Água" target="_blank">
+                      Veja Água
+                    </a>
+                </td>
+                <td>
+                    R$2,00
+                </td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <table>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Preço
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Amendoin <br>
+                    <a href="https://pt.wikipedia.org/wiki/Amendoim" target="_blank">
+                      Veja Amendoin
+                    </a>
+                </td>
+                <td>
+                    R$5,00
+                </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+   </body>     
 
 </html>
