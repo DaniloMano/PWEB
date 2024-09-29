@@ -1,0 +1,45 @@
+p.verso{
+
+    color: blue;
+ 
+ }
+
+p.mote{
+
+    color: red;
+ 
+ }
+
+a {
+    text-decoration: none; /* Remove a underline */
+    color: green; /* cor padrão do link */
+}
+
+a:hover {
+    color: orange; /* quando o mouse ta em cima do link */
+    text-decoration: underline; /* mostra underline quando o mouse ta em cima do link */
+}
+
+a:visited {
+    color: purple; /* quando o link é visitado */
+}
+
+a:active {
+    color: red; /* quando o link é clicado */
+}
+
+.avatar {
+    width: 200px; /*largura*/
+    height: 200px; /*altura*/
+    border-radius: 50%; /* deixa a imagem circular */
+    object-fit: cover; /* faz a imagem preencher a área circular */
+    border: 2px solid #ccc; /* Opcional: Adiciona uma borda */
+}
+
+.poeta img {
+    width: 200px; /*largura*/
+    height: 200px; /*altura*/
+    border-radius: 50%; /* deixa a imagem circular */
+    object-fit: cover; /* faz a imagem preencher a área circular */
+    border: 2px solid #ccc; /* Opcional: Adiciona uma borda */
+}
