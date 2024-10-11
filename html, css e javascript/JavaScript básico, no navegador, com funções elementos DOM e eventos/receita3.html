@@ -7,12 +7,15 @@
    </head>
    
    <body>
-      <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>            
-   </body>   
+        <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>            
+        <div id="nomecerveja">
+            Nome da Cerveja
+        </div>
+    </body>   
    
    <script>
       function carregarDiv(){
-         let div = document.getElementById("meu amor")
+         let div = document.getElementById("nomecerveja")
          div.innerHTML = `<h1>Guinness</h1>`
       }
       let botao = document.getElementById("botaoCarregar")
