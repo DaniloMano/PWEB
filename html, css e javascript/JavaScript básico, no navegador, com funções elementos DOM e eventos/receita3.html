@@ -3,7 +3,8 @@
 <html>   
 
    <head>
-      <meta charset="UTF-8">      
+      <meta charset="UTF-8">   
+      <link rel="stylesheet" href="fadein.css">   
    </head>
    
    <body>
@@ -11,16 +12,30 @@
         <div id="nomecerveja"></div>
     </body>   
    
-   <script>
-        let nomeVisivel = false
+    <script>
+        let nomeVisivel = false;
+
+        function fadeOut(element, callback) {
+            element.style.opacity = 0;  // Inicia o fade out
+            setTimeout(callback, 1000); // CD antes de remover o conteúdo
+        }
+
+        function fadeIn(element, content) {
+            element.innerHTML = content; // Define o novo conteúdo
+            element.style.opacity = 1;   // Inicia o fade in
+        }
+
         function carregarDiv() {
             let div = document.getElementById("nomecerveja");
+
             if (!nomeVisivel) {
-                div.innerHTML = `<h1>Guinness</h1>`;
+                fadeIn(div, `<h1>Guinness</h1>`);
                 nomeVisivel = true;
             } else {
-                div.innerHTML = "";
-                nomeVisivel = false;
+                fadeOut(div, () => {
+                    div.innerHTML = ""; // Apaga o conteúdo após o fade out
+                    nomeVisivel = false;
+                });
             }
         }
       let botao = document.getElementById("botaoCarregar")
