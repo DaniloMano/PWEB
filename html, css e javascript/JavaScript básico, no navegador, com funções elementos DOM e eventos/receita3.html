@@ -8,16 +8,21 @@
    
    <body>
         <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>            
-        <div id="nomecerveja">
-            Nome da Cerveja
-        </div>
+        <div id="nomecerveja"></div>
     </body>   
    
    <script>
-      function carregarDiv(){
-         let div = document.getElementById("nomecerveja")
-         div.innerHTML = `<h1>Guinness</h1>`
-      }
+        let nomeVisivel = false
+        function carregarDiv() {
+            let div = document.getElementById("nomecerveja");
+            if (!nomeVisivel) {
+                div.innerHTML = `<h1>Guinness</h1>`;
+                nomeVisivel = true;
+            } else {
+                div.innerHTML = "";
+                nomeVisivel = false;
+            }
+        }
       let botao = document.getElementById("botaoCarregar")
       botao.addEventListener("click", carregarDiv)                 
    </script>
