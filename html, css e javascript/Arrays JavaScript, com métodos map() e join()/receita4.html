@@ -15,6 +15,7 @@
         .container{
             background-color: rgb(99, 99, 201);
         }
+
     </style>
 
     <body>
@@ -25,18 +26,59 @@
         let cervejas = ["Guiness", "Desperados", "Becks"]
 
         function transformar(item){
-            return `<h1>${item}</h1>`
+            return `<tr>
+                    <td>
+                        <h3 class = "container mt-3">${item}</h3>
+                    </td>
+                </tr>`
         }
-
+        //essa função carrega a tabela
         function carregarDiv(){
             let cervejasHtml = cervejas.map(transformar)
 
             let div = document.getElementById("meu amor")
             
-            div.innerHTML = `<div class = "container mt-3">${cervejasHtml.join("\n")}</div>`
+            div.innerHTML = `<table class="table">
+                <thead>
+                    <tr>
+                        <th scope="row">
+                            <h1>Cervejas</h1>
+                            <button id="ordene">Ordenar</button>
+                            <button id="embaralhe">Embaralhe</button>
+                        </th>
+                    </tr>
+                </thead>
+                    <tbody>
+                            ${cervejasHtml.join("\n")}
+                    </tbody>
+                </table>`
+            //esse botão ordena a lista
+            let botaoordena = document.getElementById("ordene")
+            botaoordena.addEventListener("click", ordenalista)
+            //esse botão embaralha a lista
+            let botaoembaralha = document.getElementById("embaralhe")
+            botaoembaralha.addEventListener("click", embaralhalista)
         }
+        //essa função ordena e carrega a tabela
+        function ordenalista(){
+            cervejas.sort()
+            carregarDiv()
+        }
+        //essa função embaralha e carrega a tabela
+        // pelo algoritmo de Fisher-Yates
+        function embaralhalista(){
+            for (let i = cervejas.length -1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i+1));
+                let k = cervejas[i];
+                cervejas[i] = cervejas[j];
+                cervejas[j] = k;
+            }
+            carregarDiv()
+        }
+        //esse botão carrega a tabela
         let botao = document.getElementById("botaoCarregar")
-        botao.addEventListener("click", carregarDiv)                 
+        botao.addEventListener("click", carregarDiv)    
+
     </script>
 
 </html>
