@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>   
+
+    <head>
+        <meta charset="UTF-8">
+        <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        </style>
+    </head>
+
+
+
+   <body>
+
+      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+
+      <div id="cervejasDiv"></div>            
+
+   </body>   
+
+   
+
+   <script>
+
+
+
+        let cervejas = [
+            { name: "Guiness", alcohol: "10%", style: "Imperial Stout", ibu: "40" },
+            { name: "Desperados", alcohol: "6%", style: "Lager", ibu: "15" },
+            { name: "Becks", alcohol: "5%", style: "Pilsen", ibu: "20" }
+        ]
+
+    
+
+        //cs é um array de cervejas
+
+        const carregarDiv = (cs, idarbitrario="cervejasDiv", nomescabecalho=["Nome", "Álcool", "Estilo", "Amargor"], nomespropriedades=["name", "alcohol", "style", "ibu"]) => {
+                const div = document.getElementById(idarbitrario)
+                const cabecalhoHtml = nomescabecalho.map(cabecalho => `<th>${cabecalho}</th>`).join("");
+                const tableHtml = `
+                    <table>
+                    <thead>
+                        <tr>
+                            ${cabecalhoHtml}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${cs.map(item => `
+                            <tr>
+                        <td>${item[nomespropriedades[0]] || "name"}</td>
+                        <td>${item[nomespropriedades[1]] || "alcohol"}</td>
+                        <td>${item[nomespropriedades[2]] || "style"}</td>
+                        <td>${item[nomespropriedades[3]] || "ibu"}</td>
+                            </tr>`).join("")}
+                    </tbody>
+                    </table>`
+                div.innerHTML = tableHtml;
+            }
+
+
+
+      let botao = document.getElementById("botaoCarregar")
+
+      botao.addEventListener("click", () => carregarDiv(cervejas) )                 
+
+
+
+   </script>
+
+</html>
