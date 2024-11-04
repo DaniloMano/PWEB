@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+        <meta charset="UTF-8">
+        <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        </style>
+    </head>
+
+
+
+   <body>
+
+      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+
+      <div id="cervejasDiv"></div>            
+
+   </body>   
+
+   
+
+   <script>
+
+
+
+      let cervejas = []
+
+      
+
+      //cs é um array de cervejas
+
+      const carregarDiv = cs => {
+
+         const div = document.getElementById("cervejasDiv")
+
+         const tableHtml = `
+                    <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Alcool</th>
+                            <th>IBU</th>
+                            <th>Marca</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${cs.map(({name,alcohol,ibu,brand}) => `
+                            <tr>
+                        <td>${name}</td>
+                        <td>${alcohol}</td>
+                        <td>${ibu}</td>
+                        <td>${brand}</td>
+                            </tr>`).join("")}
+                    </tbody>
+                    </table>`
+        div.innerHTML = tableHtml
+
+      }
+
+      
+
+      async function carregarCervejas(){
+
+         try{
+
+            let res = await fetch("https://random-data-api.com/api/v2/beers?size=3")
+
+            cervejas = await res.json()
+
+            carregarDiv(cervejas)
+
+         }catch(err){
+
+            document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
+
+         }
+
+      }
+
+      
+
+
+
+      let botao = document.getElementById("botaoCarregar")
+
+      botao.addEventListener("click", () => carregarCervejas() )                 
+
+      
+
+   </script>
+
+</html>
