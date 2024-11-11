@@ -31,7 +31,7 @@
    </body>   
 
    
-
+   <script src="montaTabela.js"></script>
    <script>
 
 
@@ -43,25 +43,8 @@
       //cs é um array de itens
 
       const carregarDiv = (cs, nomescabecalho=["Titulo", "Autor", "Genero", "Publicação"], nomespropriedades=["title", "author", "genre", "published"]) => {
-
-         const div = document.getElementById("itensDiv")
-         const cabecalhoHtml = nomescabecalho.map(cabecalho => `<th>${cabecalho}</th>`).join("");
-
-         const tableHtml = `
-                    <table>
-                    <thead>
-                        <tr>
-                            ${cabecalhoHtml}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${cs.map(item => `
-                            <tr>
-                                ${nomespropriedades.map(prop => `<td>${item[prop] || ''}</td>`).join("")}
-                            </tr>`).join("")}
-                    </tbody>
-                    </table>`
-        div.innerHTML = tableHtml
+        const div = document.getElementById("itensDiv")
+        div.innerHTML = montaTabela(cs, nomescabecalho, nomespropriedades)
 
       }
 
@@ -84,10 +67,6 @@
          }
 
       }
-
-      
-
-
 
       let botao = document.getElementById("botaoCarregar")
 
