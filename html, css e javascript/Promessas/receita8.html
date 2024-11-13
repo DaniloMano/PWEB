@@ -5,43 +5,52 @@
    <head>
 
       <meta charset="UTF-8">      
-
+      <style>
+         table {
+             width: 100%;
+             border-collapse: collapse;
+         }
+         th, td {
+             border: 1px solid #dddddd;
+             text-align: left;
+             padding: 8px;
+         }
+         th {
+             background-color: #f2f2f2;
+         }
+         </style>
    </head>
 
 
 
    <body>
 
-      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+      <div><button id="botaoCarregar">Carregando itens...</button></div>
 
-      <div id="cervejasDiv"></div>            
+      <div id="itensDiv"></div>            
 
-   </body>   
+   </body>  
 
    
-
+   <script src="montaTabela.js"></script>
    <script>
 
 
 
-      let cervejas = []
+      let itens = []
 
       
 
-      //cs é um array de cervejas
+      //cs é um array de itens
 
-      const carregarDiv = cs => {
-
-         const div = document.getElementById("cervejasDiv")
-
-         const itensHtml = cs.map( ({name,alcohol}) => `<div>${name} -- ${alcohol}</div>` ) 
-
-         div.innerHTML = `${itensHtml.join("\n")}`
+      const carregarDiv = (cs, nomescabecalho=["Titulo", "Autor", "Genero", "Publicação"], nomespropriedades=["title", "author", "genre", "published"]) => {
+        const div = document.getElementById("itensDiv")
+        div.innerHTML = montaTabela(cs, nomescabecalho, nomespropriedades)
 
       }
 
       
-
+      //num vamo usar no momento
       async function carregarCervejas(){
 
          try{
@@ -54,51 +63,39 @@
 
          }catch(err){
 
-            document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
+            document.getElementById("itensDiv").innerHTML = "Fudeu..."
 
          }
 
       }
 
-      
-
-      function chegouRespostaDoJson(json){
-
-         cervejas = json
-
-         carregarDiv(cervejas)         
-
-      }
-
-      
-
-      function chegouRespostaDoFetch(res){
-
-         let p = res.json()
-
-         p.then(chegouRespostaDoJson)
-
-      }
-
             
 
-      function carregarCervejas2(){
+      function carregarItens2(){
 
-         let p = fetch("https://random-data-api.com/api/v2/beers?size=3")
+         fetch("https://fakerapi.it/api/v2/books?_quantity=5").then(
 
-         p.then(chegouRespostaDoFetch)
+            res => res.json()
 
-         document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`          
+         ).then( 
+
+            json => carregarDiv(json.data) 
+
+         ).catch(
+
+            err => document.getElementById("itensDiv").innerHTML = `Fudeu... ${err}`
+
+         )
+
+         document.getElementById("itensDiv").innerHTML = `Fazendo requisição`          
 
       }
 
       
-
-
 
       let botao = document.getElementById("botaoCarregar")
 
-      botao.addEventListener("click", () => carregarCervejas2() )                 
+      botao.addEventListener("click", () => carregarItens2() )                 
 
       
 
