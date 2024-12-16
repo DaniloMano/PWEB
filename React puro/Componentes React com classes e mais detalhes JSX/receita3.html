@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>ReceitaReact - 2</title>      
+   </head>
+   <body>
+      <div id="app">
+
+      </div>
+
+      <script src="libs/react.js"></script>
+      <script src="libs/react-dom.js"></script>
+      <script src="libs/babel.js"></script>
+      <script type="text/babel">
+
+        class App extends React.Component{
+            constructor(props) { //fazendo a lista de bebidas
+                super(props);
+                this.state = {
+                    bebidas: [
+                        { nome: "Havana", marca: "Engenho Anísio Santiago" },
+                        { nome: "Jack Daniels", marca: "Brown-Forman" },
+                    ],
+                };
+            }
+            render() {
+                return ( //chamando os componentes de classe
+                //passando a lista de bebidas como parametro pro tabelabebidas
+                    <div>
+                        <Cabecalho/>
+                        <TabelaBebidas 
+                            titulo="Tabela de Cana" // Passa o título da tabela
+                            bebidas={this.state.bebidas} // Passa a lista de bebidas
+                        />
+                        <Rodape/>
+                    </div>
+                )
+            }
+        }
+
+        class Cabecalho extends React.Component{
+            render(){
+                return( //fazendo cabecalho porco
+                    <header>
+                        <h1>Barbidas</h1>
+                        <p>Elas são bebíveis</p>
+                    </header>
+                )
+            }
+        }
+
+        class Rodape extends React.Component{
+            render(){
+                return( //rodape meramente amostratinho
+                    <footer>
+                        <p>&copy; 20XX Bebidas Ltda.s Todos os goles reservados.</p>
+                    </footer>
+                )
+            }
+        }
+
+         class TabelaBebidas extends React.Component{
+            render(){
+                const { bebidas, titulo } = this.props; // Recebe a lista de bebidas e o titulo da tabela
+                // no tbody olha a lista de bebida e mostra nos canto certo em ordem
+                return (
+                  <div>
+                    <h1>{titulo}</h1>
+                     <table id="tabela" border="1">
+                        <thead>
+                           <tr><th>Nome</th><th>Marca</th></tr>
+                        </thead>
+                        <tbody>
+                            {bebidas.map((bebida, index) => (
+                                <tr key={index}>
+                                    <td>{bebida.nome}</td>
+                                    <td>{bebida.marca}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                     </table>
+                 </div> 
+               )
+            }
+         }
+
+         const TabelaBebidas__ = () => {
+            return (
+               <div>
+                  <h1>Tabela de Bebidas</h1>
+                  <table id="tabela" border="1">
+                     <thead>
+                        <tr><th>Nome</th><th>Marca</th></tr>
+                     </thead>
+                     <tbody>
+                        <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+                     </tbody>
+                  </table>
+               </div>
+            )  
+         }
+
+         ReactDOM.render(
+            <App/>,
+            document.getElementById("app"))
+      </script>
+   </body>
+</html>
